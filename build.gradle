@@ -1,0 +1,26 @@
+apply from: 'common/constants.gradle'
+
+buildscript {
+    repositories {
+        apply from: 'common/dependencies.gradle'
+        addRepos(repositories)
+    }
+
+    dependencies {
+        classpath deps.classPath.gradle
+    }
+}
+
+allprojects { project ->
+    repositories {
+        addRepos(repositories)
+    }
+
+    project.apply from: "${rootDir}/common/constants.gradle"
+}
+
+apply from: 'common/dependencies.gradle'
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

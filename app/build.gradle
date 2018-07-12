@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+apply from: '../config/quality/quality.gradle'
+
+android {
+    compileSdkVersion project.ANDROID_COMPILE_TARGET_SDK_VERSION
+    flavorDimensions "buildType"
+
+    defaultConfig {
+        multiDexEnabled true
+        applicationId project.PROJECT_ID
+        minSdkVersion project.ANDROID_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_COMPILE_TARGET_SDK_VERSION
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'HOST', "\"${project.URL_API}\""
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+        dev {
+            applicationIdSuffix = project.SUFFIX_DEV as String
+            versionCode project.VERSION_CODE_DEV as int
+            versionName project.VERSION_NAME_DEV
+        }
+
+        qa {
+            applicationIdSuffix = project.SUFFIX_QA as String
+            versionCode project.VERSION_CODE_QA as int
+            versionName project.VERSION_NAME_QA
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.support.appCompat
+    implementation deps.support.design
+    implementation deps.support.cardView
+    implementation deps.support.annotations
+    implementation deps.support.support
+    implementation deps.constraint
+
+    implementation deps.retrofit.retrofit
+    implementation deps.retrofit.jackson
+    implementation deps.okhttp3_logging_interceptor
+    implementation deps.jakeWarthon.timber
+
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    annotationProcessor deps.dagger.android_support_compiler
+    annotationProcessor deps.dagger.compiler
+
+    implementation deps.glide
+    implementation deps.calligraphy
+    implementation deps.multiDex
+    deps.testDep.each { testImplementation it }
+    deps.androidTestDep.each { androidTestImplementation it }
+}

@@ -1,0 +1,19 @@
+// Settings shared between the different modules and build flavors
+project.ext {
+    ANDROID_MIN_SDK_VERSION = 15
+    ANDROID_COMPILE_TARGET_SDK_VERSION = 28
+
+    PROJECT_ID = "reprator.arrk"
+    PROJECT_APK_NAME = "Arkk"
+
+    VERSION_NAME_DEV = "1.0.0"
+    VERSION_CODE_DEV = "1"
+
+    VERSION_NAME_QA = "1.0.0"
+    VERSION_CODE_QA = 1
+
+    SUFFIX_DEV =".dev"
+    SUFFIX_QA =".qa"
+
+    URL_API = "swapi.co"
+}

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">StarWars</string>
+
+    <!-- fonts path-->
+    <string name="font_os_boldItalic">fonts/opensans_boldItalic.ttf</string>
+    <string name="font_os_bold">fonts/opensans_bold.ttf</string>
+    <string name="font_os_italic">fonts/opensans_italic.ttf</string>
+    <string name="font_os_regular">fonts/opensans_regular.ttf</string>
+
+    <string name="error_retry">Retry</string>
+    <string name="error_name">Oops, couldn\'t load data</string>
+    <string name="error_empty_list">We have no data to show</string>
+    <string name="loader_msg">Please Wait....</string>
+
+    <!-- Retrofit Exception Validation-->
+    <string name="retrofit_no_interent">No internet Connection Found.</string>
+    <string name="retrofit_parsing_exception">Please check your internet connection or some unknown issue had occurred.</string>
+    <string name="retrofit_socket_timeOut">Internet Connection Is Very Slow.</string>
+    <string name="retrofit_unknownError">Unknown Error Occurred.</string>
+
+    <!-- Character Detail-->
+    <string name="cd_height">%1$.2f m</string>
+    <string name="cd_weight">%1$.2f Kg</string>
+    <string name="cd_con_name">Name:</string>
+    <string name="cd_con_height">Height: </string>
+    <string name="cd_con_weight">Weight</string>
+    <string name="cd_con_date">Creation Date</string>
+
+</resources>

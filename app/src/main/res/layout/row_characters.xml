@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rc_tv_name"
+    android:minHeight="@dimen/rc_height_min"
+    android:gravity="start|center_vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    fontPath="@string/font_os_boldItalic"
+    android:textColor="@color/list_itemText"
+    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+    tools:ignore="MissingPrefix" />

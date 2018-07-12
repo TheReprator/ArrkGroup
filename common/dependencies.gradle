@@ -1,0 +1,238 @@
+//https://github.com/leinardi/FloatingActionButtonSpeedDial
+/**
+ * Shared file between builds so that they can all use the same dependencies and
+ * maven repositories.
+ **/
+ext.deps = [:]
+def versions = [:]
+versions.support = "28.0.0-alpha3"
+versions.play_firebase_service = "15.0.0"
+versions.dagger = "2.15"
+versions.glide = "4.7.1"
+versions.retrofit = "2.4.0"
+versions.okhttp3 = "3.10.0"
+versions.kotlin = "1.2.41"
+versions.espresso = "3.0.1"
+versions.hamcrest = "1.3"
+versions.junit = "4.12"
+versions.mockito = "2.18.0"
+versions.mockito_all = "1.10.19"
+versions.powermock = "1.7.4"
+versions.arch = hasProperty("ARCH_VERSION") ? getProperty("ARCH_VERSION") : "1.1.0"
+versions.atsl_rules = "1.0.1"
+versions.atsl_runner = "1.0.1"
+
+ext.versions = versions
+
+
+def packages = [:]
+packages.support = "com.android.support"
+packages.firebase = "com.google.firebase"
+packages.dagger = "com.google.dagger"
+packages.retrofit = "com.squareup.retrofit2"
+packages.googleService = "com.google.android.gms:play-services"
+packages.glide = "com.github.bumptech.glide"
+packages.jakeWarthon = "com.jakewharton"
+ext.packages = packages
+
+
+
+def deps = [:]
+
+
+def classPath = [:]
+classPath.gradle = "com.android.tools.build:gradle:3.1.3"
+classPath.googleServices = "com.google.gms:google-services:3.2.1"
+classPath.fabric = "io.fabric.tools:gradle:1.25.4"
+deps.classPath = classPath
+
+
+def room = [:]
+room.compiler = "android.arch.persistence.room:compiler:$versions.arch"
+room.runtime = "android.arch.persistence.room:runtime:$versions.arch"
+room.rxjava2 = "android.arch.persistence.room:rxjava2:$versions.arch"
+room.testing = "android.arch.persistence.room:testing:$versions.arch"
+deps.room = room
+
+
+def lifecycle = [:]
+lifecycle.compiler = "android.arch.lifecycle:compiler:$versions.arch"
+lifecycle.extensions = "android.arch.lifecycle:extensions:$versions.arch"
+lifecycle.java8 = "android.arch.lifecycle:common-java8:$versions.arch"
+lifecycle.runtime = "android.arch.lifecycle:runtime:$versions.arch"
+deps.lifecycle = lifecycle
+
+
+def arch_core = [:]
+arch_core.testing = "android.arch.core:core-testing:$versions.arch"
+deps.arch_core = arch_core
+
+def kotlin = [:]
+kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
+kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+kotlin.jdk =  "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+deps.kotlin = kotlin
+
+def support = [:]
+support.design = buildDependencySupport(packages.support, versions.support, 'design')
+support.support = buildDependencySupport(packages.support, versions.support, 'support-v4')
+support.gridlayout = buildDependencySupport(packages.support, versions.support, 'gridlayout-v7')
+support.recyclerView = buildDependencySupport(packages.support, versions.support, 'recyclerview-v7')
+support.cardView = buildDependencySupport(packages.support, versions.support, 'cardview-v7')
+support.appCompat = buildDependencySupport(packages.support, versions.support, 'appcompat-v7')
+support.annotations = buildDependencySupport(packages.support, versions.support, 'support-annotations')
+support.palette = buildDependencySupport(packages.support, versions.support, 'palette-v7')
+support.percent = buildDependencySupport(packages.support, versions.support, 'percent')
+deps.support = support
+
+
+def play_services = [:]
+play_services.googl_plus = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'plus')
+play_services.account_login = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'auth')
+play_services.googl_plus = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'base')
+play_services.identity = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'identity')
+play_services.analytics = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'analytics')
+play_services.awareness = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'awareness')
+play_services.gcm = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'gcm')
+play_services.drive = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'drive')
+play_services.fitness = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'fitness')
+play_services.location = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'location')
+play_services.maps = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'maps')
+play_services.ads = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'ads')
+play_services.places = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'places')
+play_services.vision = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'vision')
+play_services.nearby = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'nearby')
+play_services.panorama = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'panorama')
+play_services.games = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'games')
+play_services.safetynet = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'safetynet')
+play_services.wallet = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'wallet')
+play_services.wearable = buildDependencyPlayServices(packages.googleService, versions.play_firebase_service, 'wearable')
+deps.play_services = play_services
+
+
+deps.firebase = [
+        core         : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-core'),
+        database     : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-database'),
+        storage      : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-storage'),
+        crash        : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-crash'),
+        auth         : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-auth'),
+        messaging    : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-messaging'),
+        remoteConfig : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-remoteConfig'),
+        invites      : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-invites'),
+        adMod        : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-adMod'),
+        appIndexing  : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-appIndexing'),
+        analytics    : buildDependencySupport(packages.firebase, versions.play_firebase_service, 'firebase-analytics'),
+        jobDispatcher: 'com.firebase:firebase-jobdispatcher:0.8.5'
+]
+
+
+def reactiveX = [:]
+reactiveX.android = "io.reactivex.rxjava2:rxandroid:2.0.2"
+reactiveX.java = "io.reactivex.rxjava2:rxjava:2.1.12"
+deps.reactiveX = reactiveX
+
+
+def jakeWarthon = [:]
+jakeWarthon.timber = buildDependencySupport("com.jakewharton.timber", '4.7.0', 'timber')
+jakeWarthon.butterKnife = buildDependencySupport(packages.jakeWarthon, '8.8.1', 'butterknife')
+jakeWarthon.butterKnifeCompiler = buildDependencySupport(packages.jakeWarthon, '8.8.1', 'butterknife-compiler')
+deps.jakeWarthon = jakeWarthon
+
+
+def retrofit = [:]
+retrofit.retrofit = buildDependencySupport(packages.retrofit, versions.retrofit, 'retrofit')
+retrofit.jackson = buildDependencySupport(packages.retrofit, versions.retrofit, 'converter-jackson')
+retrofit.rxAdapter = buildDependencySupport(packages.retrofit, versions.retrofit, 'adapter-rxjava')
+deps.retrofit = retrofit
+
+
+def dagger = [:]
+dagger.android = buildDependencySupport(packages.dagger, versions.dagger, 'dagger-android')
+dagger.android_support = buildDependencySupport(packages.dagger, versions.dagger, 'dagger-android-support')
+dagger.android_support_compiler = buildDependencySupport(packages.dagger, versions.dagger, 'dagger-android-processor')
+dagger.compiler = buildDependencySupport(packages.dagger, versions.dagger, 'dagger-compiler')
+dagger.runtime = "com.google.dagger:dagger:$versions.dagger"
+deps.dagger = dagger
+
+
+def espresso = [:]
+espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
+
+def mockito = [:]
+mockito.core = "org.mockito:mockito-core:$versions.mockito"
+mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
+deps.mockito = mockito
+
+
+def powermock = [:]
+powermock.module_junit4 = "org.powermock:powermock-module-junit4:$versions.powermock"
+powermock.api_mockito = "org.powermock:powermock-api-mockito2:$versions.powermock"
+deps.powermock = powermock
+
+
+def hamcrest = [:]
+hamcrest.core = "org.hamcrest:hamcrest-core:$versions.hamcrest"
+hamcrest.library = "org.hamcrest:hamcrest-library:$versions.hamcrest"
+hamcrest.integration = "org.hamcrest:hamcrest-integration:$versions.hamcrest"
+hamcrest.all = "org.hamcrest:hamcrest-all:$versions.hamcrest"
+deps.hamcrest = hamcrest
+
+
+// Test
+deps.junit = "junit:junit:$versions.junit"
+deps.testRunner = "com.android.support.test:runner:0.5"
+deps.testRules = "com.android.support.test:rules:0.5"
+
+deps.testDep = [deps.junit,
+                deps.hamcrest.core,
+                deps.hamcrest.library,
+                deps.hamcrest.integration,
+                deps.espresso.core,
+                deps.mockito.core]
+
+deps.androidTestDep = [deps.junit,
+                       deps.testRunner,
+                       deps.testRules,
+                       deps.hamcrest.core,
+                       deps.hamcrest.library,
+                       deps.hamcrest.integration]
+
+deps.mock_web_server = "com.squareup.okhttp3:mockwebserver:$versions.okhttp3"
+deps.okhttp3_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp3"
+
+deps.zxingBarCode = 'me.dm7.barcodescanner:zxing:1.9.8'
+deps.zxingCode = 'com.google.zxing:core:3.2.1'
+deps.zxingEmbedded = 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+
+deps.glide = buildDependencySupport(packages.glide, versions.glide, 'glide')
+
+deps.nineOldroid = 'com.nineoldandroids:library:2.4.0'
+deps.multiDex = 'com.android.support:multidex:1.0.1'
+deps.crashLytics = 'com.crashlytics.sdk.android:crashlytics:2.6.8@aar'
+deps.calligraphy = 'uk.co.chrisjenx:calligraphy:2.2.0'
+deps.mapUtis = 'com.google.maps.android:android-maps-utils:0.5'
+deps.constraint = 'com.android.support.constraint:constraint-layout:1.1.2'
+ext.deps = deps
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+    handler.maven { url "https://maven.fabric.io/public" }
+}
+
+ext.addRepos = this.&addRepos
+
+
+static String buildDependencySupport(String pack, String version, String dependency) {
+    return "${pack}:${dependency}:${version}"
+}
+
+static String buildDependencyPlayServices(String pack, String version, String dependency) {
+    return "${pack}-${dependency}:${version}"
+}

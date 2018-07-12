@@ -1,0 +1,63 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/app_background</item>
+        <item name="android:textColorPrimary">@color/label_itemText</item>
+    </style>
+
+    <style name="buttonRoot" parent="Base.Widget.AppCompat.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="fontPath">@string/font_os_bold</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6</item>
+    </style>
+
+    <style name="textView" parent="android:Widget.TextView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="listItem" parent="textView">
+        <item name="android:textColor">@color/list_itemText</item>
+    </style>
+
+    <style name="textView.Label" parent="textView">
+        <item name="android:textColor">@color/label_itemText</item>
+    </style>
+
+    <style name="textView.LabelValue" parent="textView">
+        <item name="android:textColor">@color/label_value</item>
+    </style>
+
+    <style name="overscroll_remove" parent="android:Widget.ScrollView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="toolBarLayout" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="layout_collapseMode">pin</item>
+        <item name="contentInsetLeft">@dimen/toolbar_contentInsetLeft</item>
+        <item name="contentInsetStart">@dimen/toolbar_contentInsetLeft</item>
+        <item name="contentInsetRight">@dimen/toolbar_contentInsetRight</item>
+        <item name="contentInsetEnd">@dimen/toolbar_contentInsetRight</item>
+    </style>
+</resources>

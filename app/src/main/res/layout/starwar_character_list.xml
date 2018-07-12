@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/root_recyclervew"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include layout="@layout/common_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ViewStub
+        android:id="@+id/common_vs_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout="@layout/view_error" />
+
+    <ViewStub
+        android:id="@+id/common_vs_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout="@layout/view_empty" />
+
+    <ViewStub
+        android:id="@+id/common_vs_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout="@layout/progress_footer" />
+</RelativeLayout>

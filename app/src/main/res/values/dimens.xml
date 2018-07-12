@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar_contentInsetLeft">0dp</dimen>
+    <dimen name="toolbar_contentInsetRight">0dp</dimen>
+    <dimen name="button_height">48dp</dimen>
+    <dimen name="empty_item_minimum_height">100dp</dimen>
+    <dimen name="error_margin_top">15dp</dimen>
+    <dimen name="error_margin_bottom">10dp</dimen>
+    <!--Row Character list-->
+    <dimen name="rc_height_min">130dp</dimen>
+</resources>
